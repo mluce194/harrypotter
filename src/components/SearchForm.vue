@@ -10,15 +10,15 @@
       />
     </div>
     <div>
-        <label for="gender">Sort by gender</label>
+      <label for="gender">Sort by gender</label>
       <select id="gender" @change="handleGenderChange">
-        <option value="both">All genders</option>
+        <option value="all">All genders</option>
         <option value="male">Male</option>
         <option value="female">Female</option>
       </select>
     </div>
     <div>
-        <label for="house">Sort by house</label>
+      <label for="house">Sort by house</label>
       <select id="house" @change="handleHouseChange">
         <option value="all">All houses</option>
         <option value="Gryffindor">Gryffindor</option>
@@ -34,7 +34,7 @@ export default {
   data: function () {
     return {
       characterName: "",
-      gender: ""
+      gender: "",
     };
   },
 
@@ -46,9 +46,8 @@ export default {
       this.$emit("readCharacterGender", event.target.value);
     },
     handleHouseChange(event) {
-    this.$emit("readCharacterHouse", event.target.value);
-    }
-    
+      this.$emit("readCharacterHouse", event.target.value);
+    },
   },
 };
 </script>

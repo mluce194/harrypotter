@@ -1,14 +1,14 @@
 <template>
-  <MainTest></MainTest>
+  <main-container></main-container>
 </template>
 
 <script>
-import MainTest from './components/MainTest'
+import MainContainer from './components/MainContainer'
 
 export default {
   name: 'App',
   components: {
-    MainTest
+    MainContainer
   }
 }
 </script>
