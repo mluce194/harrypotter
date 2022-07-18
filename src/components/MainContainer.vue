@@ -57,7 +57,6 @@ export default {
   methods: {
     characterNameHandler(input) {
       this.inputName = input;
-      console.log("le nom tapé pour mon personnage est", name);
     },
     characterHouseHandler(input) {
       this.inputHouse = input;

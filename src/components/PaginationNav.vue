@@ -12,7 +12,6 @@ export default {
     methods: {
         handlePage(num) {
             this.$emit("getPageNumber", num)
-            console.log("mon numéro de lien est", num)
 
         }
     }
