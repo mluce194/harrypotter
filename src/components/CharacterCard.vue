@@ -1,5 +1,5 @@
 <template>
-  <div :style="cssClass">
+  <div>
     <h2>{{ name }}</h2>
     <strong>Gender:</strong> {{ gender }}<br />
     <strong>House:</strong> {{ house }}<br />
@@ -13,7 +13,6 @@ export default {
     name: String,
     gender: String,
     house: String,
-    cssClass: Object,
   },
 };
 </script>

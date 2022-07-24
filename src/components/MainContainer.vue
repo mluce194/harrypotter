@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>Search a Harry Potter character</h1>
+    <h1 class="text-3xl font-bold underline">Search a Harry Potter character</h1>
+
     <SearchForm
       @read-character-name="characterNameHandler"
       @read-character-house="characterHouseHandler"
@@ -19,6 +20,7 @@
 <script>
 import SearchForm from "./SearchForm";
 import ListOfCharacters from "./ListOfCharacters";
+import CharactersData from "/data/characters.json"
 export default {
   name: "MainContainer",
   components: {
@@ -27,6 +29,7 @@ export default {
   },
   data: function () {
     return {
+      charactersInfos: CharactersData,
       characters: [
         { id: 1, name: "Harry Potter", house: "Gryffindor", gender: "male" },
         {

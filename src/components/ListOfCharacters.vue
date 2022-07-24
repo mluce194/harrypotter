@@ -1,15 +1,12 @@
 <template>
-  <div>
-    <div v-for="character in getSlicedArray" :key="character.id">
-      <CharacterCard
-        :name="character.name"
-        :house="character.house"
-        :gender="character.gender"
-      ></CharacterCard>
+  <div class="sm:flex">
+    <div v-for="character in getSlicedArray" :key="character.id" class="border p-5 w-[100%] sm:w-[25%]">
+      <CharacterCard :name="character.name" :house="character.house" :gender="character.gender"></CharacterCard>
     </div>
-        <PaginationNav v-if="getPagination" @getPageNumber="getCurrentPage"></PaginationNav>
 
   </div>
+      <PaginationNav v-if="getPagination" @get-page-number="getCurrentPage" :nbDePages="getNumOfPages"></PaginationNav>
+
 </template>
 
 <script>
@@ -29,17 +26,26 @@ export default {
     CharacterCard,
     PaginationNav
   },
-  data: function() {
+  data: function () {
     return {
-        paginate: true,
-
+      /*Nombre de personnages par page */
+      numOfItems: 4,
+      /*Numéro de page par défaut*/
+      pageNumber: 1,
+      /* Index du début de la division slice */
+      sliceFirstIndex: 0,
+      /* Index de la fin de la division slice - doit être similaire au nombre de personnages par page */
+      sliceLastIndex: 4
     }
   },
 
 
   methods: {
-      getCurrentPage: function(page) {
-      console.log("la page sur laquelle je suis est",page)
+
+    getCurrentPage: function (page) {
+      this.sliceLastIndex = this.numOfItems*page
+      this.sliceFirstIndex = this.sliceLastIndex - this.numOfItems
+
     }
   },
   computed: {
@@ -51,22 +57,35 @@ export default {
           (character.house == this.pickedHouse || this.pickedHouse == "all")
       );
     },
-    getPagination: function() {
-        if(this.getFilteredCharacters.length <= 4) {
-            return false
-        }
-        else {
-            return true
-        }
+
+    getNumOfPages: function() {
+      return Math.round(this.getFilteredCharacters.length/this.numOfItems)
+
     },
-    getSlicedArray: function() {
-        if(this.getPagination) {
-            return this.getFilteredCharacters.slice(4)
-        }
-        else {
-            return this.getFilteredCharacters
-        }
+
+
+    getPagination: function () {
+      if (this.getFilteredCharacters.length <= this.numOfItems) {
+        return false
+      }
+      else {
+
+        return true
+      }
     },
+
+    getSlicedArray: function () {
+      if (this.getPagination) {
+        console.log(`La pagination est active et le premier index est ${this.sliceFirstIndex}, le dernier index est ${this.sliceLastIndex}`)
+        return this.getFilteredCharacters.slice(this.sliceFirstIndex,this.sliceLastIndex)
+      }
+      else {
+        return this.getFilteredCharacters
+      }
+    },
+
+
+ 
 
 
   }
