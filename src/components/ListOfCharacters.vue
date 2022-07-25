@@ -1,11 +1,13 @@
 <template>
-  <div class="sm:flex">
-    <div v-for="character in getSlicedArray" :key="character.id" class="border p-5 w-[100%] sm:w-[25%]">
-      <CharacterCard :name="character.name" :house="character.house" :gender="character.gender"></CharacterCard>
+  <div class="sm:flex flex-wrap">
+    <div v-for="character in getSlicedArray" :key="character.id" class="p-5 w-[100%] sm:w-[25%]">
+      <CharacterCard :name="character.name" :house="character.house" :gender="character.gender"
+        :wizard="character.wizard" :birth="character.dateOfBirth" :species="character.species" :imgUrl="character.image"></CharacterCard>
     </div>
 
   </div>
-      <PaginationNav v-if="getPagination" @get-page-number="getCurrentPage" :nbDePages="getNumOfPages" :activePage="pageNumber"></PaginationNav>
+  <PaginationNav v-if="getPagination" @get-page-number="getCurrentPage" :nbDePages="getNumOfPages"
+    :activePage="pageNumber"></PaginationNav>
 
 </template>
 
@@ -29,13 +31,13 @@ export default {
   data: function () {
     return {
       /*Nombre de personnages par page */
-      numOfItems: 4,
+      numOfItems: 8,
       /*Numéro de page par défaut*/
       pageNumber: 1,
       /* Index du début de la division slice */
       sliceFirstIndex: 0,
       /* Index de la fin de la division slice - doit être similaire au nombre de personnages par page */
-      sliceLastIndex: 4
+      sliceLastIndex: 8
     }
   },
 
@@ -43,9 +45,8 @@ export default {
   methods: {
 
     getCurrentPage: function (page) {
-            this.pageNumber = page
-            console.log("le numéro de page est",this.pageNumber)
-      this.sliceLastIndex = this.numOfItems*this.pageNumber
+      this.pageNumber = page
+      this.sliceLastIndex = this.numOfItems * this.pageNumber
       this.sliceFirstIndex = this.sliceLastIndex - this.numOfItems
 
 
@@ -61,8 +62,8 @@ export default {
       );
     },
 
-    getNumOfPages: function() {
-      return Math.round(this.getFilteredCharacters.length/this.numOfItems)
+    getNumOfPages: function () {
+      return Math.round(this.getFilteredCharacters.length / this.numOfItems)
 
     },
 
@@ -79,7 +80,7 @@ export default {
 
     getSlicedArray: function () {
       if (this.getPagination) {
-        return this.getFilteredCharacters.slice(this.sliceFirstIndex,this.sliceLastIndex)
+        return this.getFilteredCharacters.slice(this.sliceFirstIndex, this.sliceLastIndex)
       }
       else {
         return this.getFilteredCharacters

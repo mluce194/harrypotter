@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1 class="text-3xl font-bold underline">Search a Harry Potter character</h1>
+  <div class="bg-zinc-800 h-[vh-100%]">
+    <h1 class="text-4xl font-bold p-10 text-amber-600 text-center">Search a Harry Potter character</h1>
 
     <SearchForm
       @read-character-name="characterNameHandler"
@@ -9,7 +9,7 @@
     ></SearchForm>
 
     <ListOfCharacters
-      :charactersList="characters"
+      :charactersList="charactersInfos"
       :typedName="inputName"
       :pickedGender="inputGender"
       :pickedHouse="inputHouse"
@@ -30,26 +30,6 @@ export default {
   data: function () {
     return {
       charactersInfos: CharactersData,
-      characters: [
-        { id: 1, name: "Harry Potter", house: "Gryffindor", gender: "male" },
-        {
-          id: 2,
-          name: "Hermione Granger",
-          house: "Gryffindor",
-          gender: "female",
-        },
-        { id: 3, name: "Ron Weasley", house: "Gryffindor", gender: "male" },
-        { id: 4, name: "Drago Malfoy", house: "Slytherin", gender: "male" },
-        { id: 5, name: "Harry Potter 1", house: "Gryffindor", gender: "male" },
-        {
-          id: 6,
-          name: "Hermione Granger 1",
-          house: "Gryffindor",
-          gender: "female",
-        },
-        { id: 7, name: "Ron Weasley 1", house: "Gryffindor", gender: "male" },
-        { id: 8, name: "Drago Malfoy 1", house: "Slytherin", gender: "male" },
-      ],
       gender: "male",
       house: "slytherin",
       inputName: "",

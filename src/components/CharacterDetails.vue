@@ -1,5 +1,5 @@
 <template>
-  <div class="border rounded p-5 text-white">
+      <div>
  
     <img class="rounded-full float-right max-w-[25%]" :src="imgUrl"/>
     <h2 class="font-bold uppercase text-amber-600">{{ name }}</h2>
@@ -13,9 +13,10 @@
 </template>
 
 <script>
+
 export default {
-  name: "CharacterCard",
-  props: {
+    name: 'CharacterDetails',
+    props: {
     name: String,
     gender: String,
     house: String,
@@ -26,5 +27,3 @@ export default {
   },
 };
 </script>
-
-<style></style>
