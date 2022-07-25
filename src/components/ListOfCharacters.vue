@@ -5,7 +5,7 @@
     </div>
 
   </div>
-      <PaginationNav v-if="getPagination" @get-page-number="getCurrentPage" :nbDePages="getNumOfPages"></PaginationNav>
+      <PaginationNav v-if="getPagination" @get-page-number="getCurrentPage" :nbDePages="getNumOfPages" :activePage="pageNumber"></PaginationNav>
 
 </template>
 
@@ -43,8 +43,11 @@ export default {
   methods: {
 
     getCurrentPage: function (page) {
-      this.sliceLastIndex = this.numOfItems*page
+            this.pageNumber = page
+            console.log("le numéro de page est",this.pageNumber)
+      this.sliceLastIndex = this.numOfItems*this.pageNumber
       this.sliceFirstIndex = this.sliceLastIndex - this.numOfItems
+
 
     }
   },
@@ -76,7 +79,6 @@ export default {
 
     getSlicedArray: function () {
       if (this.getPagination) {
-        console.log(`La pagination est active et le premier index est ${this.sliceFirstIndex}, le dernier index est ${this.sliceLastIndex}`)
         return this.getFilteredCharacters.slice(this.sliceFirstIndex,this.sliceLastIndex)
       }
       else {
@@ -84,10 +86,19 @@ export default {
       }
     },
 
+  },
 
- 
+  watch: {
+    'typedName'() {
+      this.getCurrentPage(1)
 
-
+    },
+    'pickedGender'() {
+      this.getCurrentPage(1)
+    },
+    'pickedHouse'() {
+      this.getCurrentPage(1)
+    }
   }
 
 };
