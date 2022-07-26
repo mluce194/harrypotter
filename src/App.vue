@@ -1,16 +1,16 @@
 <template>
-  <main-container></main-container>
+  <div class="bg-zinc-800">
+    <router-link to="/character">Character Page</router-link>
+    |
+    <router-link to="/">Home</router-link>
+    <router-view></router-view>
+  </div>
+
 </template>
 
 <script>
-import MainContainer from './components/MainContainer'
-
-
 
 export default {
-  name: 'App',
-  components: {
-    MainContainer
-  }
+    name: "App",
 }
 </script>

@@ -1,35 +1,33 @@
 <template>
-  <div class="bg-zinc-800 h-[vh-100%]">
+  <div>
     <h1 class="text-4xl font-bold p-10 text-amber-600 text-center">Search a Harry Potter character</h1>
 
-    <SearchForm
-      @read-character-name="characterNameHandler"
-      @read-character-house="characterHouseHandler"
-      @read-character-gender="characterGenderHandler"
-    ></SearchForm>
+    <SearchForm @read-character-name="characterNameHandler" @read-character-house="characterHouseHandler"
+      @read-character-gender="characterGenderHandler"></SearchForm>
+    <ListOfCharacters :charactersList="charactersInfos" :typedName="inputName" :pickedGender="inputGender"
+      :pickedHouse="inputHouse"></ListOfCharacters>
 
-    <ListOfCharacters
-      :charactersList="charactersInfos"
-      :typedName="inputName"
-      :pickedGender="inputGender"
-      :pickedHouse="inputHouse"
-    ></ListOfCharacters>
+
+
   </div>
 </template>
 
 <script>
 import SearchForm from "./SearchForm";
-import ListOfCharacters from "./ListOfCharacters";
-import CharactersData from "/data/characters.json"
+import ListOfCharacters
+ from "./ListOfCharacters.vue";
+ import CharactersData from "/data/characters.json"
+
 export default {
   name: "MainContainer",
   components: {
-    ListOfCharacters,
     SearchForm,
+    ListOfCharacters
   },
   data: function () {
     return {
       charactersInfos: CharactersData,
+
       gender: "male",
       house: "slytherin",
       inputName: "",
@@ -52,4 +50,5 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+</style>

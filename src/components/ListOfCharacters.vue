@@ -1,6 +1,8 @@
 <template>
   <div class="sm:flex flex-wrap">
+    <div v-if="getSlicedArray.length == 0" class="mx-auto"><span class="text-white text-xl m-10 block">No character found</span></div>
     <div v-for="character in getSlicedArray" :key="character.id" class="p-5 w-[100%] sm:w-[25%]">
+    
       <CharacterCard :name="character.name" :house="character.house" :gender="character.gender"
         :wizard="character.wizard" :birth="character.dateOfBirth" :species="character.species" :imgUrl="character.image"></CharacterCard>
     </div>
@@ -9,9 +11,11 @@
   <PaginationNav v-if="getPagination" @get-page-number="getCurrentPage" :nbDePages="getNumOfPages"
     :activePage="pageNumber"></PaginationNav>
 
+
 </template>
 
 <script>
+
 import CharacterCard from "./CharacterCard";
 import PaginationNav from "./PaginationNav"
 
@@ -26,10 +30,11 @@ export default {
   },
   components: {
     CharacterCard,
-    PaginationNav
+    PaginationNav,
   },
   data: function () {
     return {
+
       /*Nombre de personnages par page */
       numOfItems: 8,
       /*Numéro de page par défaut*/
@@ -56,7 +61,7 @@ export default {
     getFilteredCharacters: function () {
       return this.charactersList.filter(
         character =>
-          character.name.toLowerCase().startsWith(this.typedName) &&
+          character.name.toLowerCase().includes(this.typedName.toLowerCase()) &&
           (character.gender == this.pickedGender || this.pickedGender == "all") &&
           (character.house == this.pickedHouse || this.pickedHouse == "all")
       );
