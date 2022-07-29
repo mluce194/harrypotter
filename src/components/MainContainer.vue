@@ -1,11 +1,11 @@
 <template>
   <div>
     <h1 class="text-4xl font-bold p-10 text-amber-600 text-center">Search a Harry Potter character</h1>
-
     <SearchForm @read-character-name="characterNameHandler" @read-character-house="characterHouseHandler"
       @read-character-gender="characterGenderHandler"></SearchForm>
-    <ListOfCharacters :charactersList="charactersInfos" :typedName="inputName" :pickedGender="inputGender"
+    <ListOfCharacters :charactersList="getCharactersData" :typedName="inputName" :pickedGender="inputGender"
       :pickedHouse="inputHouse"></ListOfCharacters>
+
 
 
 
@@ -14,9 +14,7 @@
 
 <script>
 import SearchForm from "./SearchForm";
-import ListOfCharacters
- from "./ListOfCharacters.vue";
- import CharactersData from "/data/characters.json"
+import ListOfCharacters from "./ListOfCharacters.vue";
 
 export default {
   name: "MainContainer",
@@ -26,8 +24,6 @@ export default {
   },
   data: function () {
     return {
-      charactersInfos: CharactersData,
-
       gender: "male",
       house: "slytherin",
       inputName: "",
@@ -46,6 +42,15 @@ export default {
       this.inputGender = input;
     },
   },
+  computed: {
+    getCharactersData() {
+      return this.$store.state.data
+    },
+
+  },
+
+
+
 };
 </script>
 

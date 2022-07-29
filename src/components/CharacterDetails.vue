@@ -1,29 +1,77 @@
 <template>
-      <div>
- 
-    <img class="rounded-full float-right max-w-[25%]" :src="imgUrl"/>
-    <h2 class="font-bold uppercase text-amber-600">{{ name }}</h2>
-    <p><strong class="font-bold">{{ wizard ? gender=="female" ? "Witch" : "Wizard" : "No magic powers" }}</strong></p>
-    <p><strong>Date of birth: </strong>{{ birth ? birth  : "unknown"}}</p>
-        <p><strong>Species: </strong>{{ species }}</p>
-   <p><strong>Gender: </strong>{{ gender }}</p> 
-   <p><strong>House: </strong>{{ house }}</p> 
-   <button>Read more</button>
+
+  <div class="text-white px-5 pb-20 sm:max-w-[40rem] mx-auto text-xl">
+    <h1 class="text-4xl font-bold px-5 pb-20 text-amber-600 text-center uppercase">{{ getSingleCharacterData.name }}
+    </h1>
+    <img class="block mx-auto max-w-[100%] sm:float-right" :src="getSingleCharacterData.imgUrl"
+      :alt="getSingleCharacterData.name" />
+    <p class="py-2"><strong>{{ getSingleCharacterData.wizard ? getSingleCharacterData.gender == "female" ? "Witch" :
+        "Wizard" : getSingleCharacterData.species
+    }}</strong></p>
+    <p class="py-2"><strong>{{ getSingleCharacterData.hogwartsStudent ? "Hogwarts student" :
+        getSingleCharacterData.hogwartsStaff ?
+          "Hogwarts staff" : ""
+    }}</strong></p>
+    <p class="py-2"><strong class="text-amber-600">Date of birth: </strong>{{ getSingleCharacterData.dateOfBirth ?
+        getSingleCharacterData.dateOfBirth :
+        "unknown"
+    }}</p>
+    <p class="py-2"><strong class="text-amber-600">Species: </strong>{{ getSingleCharacterData.species ?
+        getSingleCharacterData.species : "unknown"
+    }}</p>
+    <p class="py-2"><strong class="text-amber-600">Gender: </strong>{{ getSingleCharacterData.gender }}</p>
+    <p class="py-2"><strong class="text-amber-600">House: </strong>{{ getSingleCharacterData.house ?
+        getSingleCharacterData.house : "no recognized house"
+    }}
+    </p>
+    <p class="py-2"><strong class="text-amber-600">Eye color: </strong>{{ getSingleCharacterData.eyeColour ?
+        getSingleCharacterData.eyeColour : "unknown"
+    }}</p>
+    <p class="py-2"><strong class="text-amber-600">Hair color: </strong>{{ getSingleCharacterData.hairColour ?
+        getSingleCharacterData.hairColour : "unknown"
+    }}</p>
+    <p class="py-2"><strong class="text-amber-600">Ancestry: </strong>{{ getSingleCharacterData.ancestry ?
+        getSingleCharacterData.ancestry : "unknown"
+    }}</p>
+    <p class="py-2"><strong class="text-amber-600">Wand: </strong>{{ getSingleCharacterData.wand.wood != "" ?
+        getCharacterWandInfo : "unknown or non-applicable"
+    }}</p>
+    <p class="py-2"><strong class="text-amber-600">Patronus: </strong>{{ getSingleCharacterData.patronus ?
+        getSingleCharacterData.patronus : "unknown"
+    }}</p>
+
+
+
+
+
   </div>
+
 </template>
 
 <script>
 
+
+
 export default {
-    name: 'CharacterDetails',
-    props: {
-    name: String,
-    gender: String,
-    house: String,
-    wizard: Boolean,
-    birth: String,
-    species: String,
-    imgUrl: String
-  },
+  name: 'CharacterDetails',
+
+  computed: {
+    getCharactersData() {
+      return this.$store.state.data
+    },
+    getCharacterName() {
+      return this.$route.params.name.split("-").join(" ")
+    },
+    getCharacterData() {
+      return this.getCharactersData.filter(character => character.name == this.getCharacterName)
+    },
+    getSingleCharacterData() {
+      return this.getCharacterData[0]
+    },
+    getCharacterWandInfo() {
+      return this.getSingleCharacterData.wand.wood + " " + this.getSingleCharacterData.wand.core + " " + this.getSingleCharacterData.wand.length
+    }
+  }
+
 };
 </script>
