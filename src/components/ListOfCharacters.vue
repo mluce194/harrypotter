@@ -1,15 +1,16 @@
 <template>
   <div class="sm:flex flex-wrap">
-    <div v-if="getSlicedArray.length == 0" class="mx-auto"><span class="text-white text-xl m-10 block">No character found</span></div>
+    <div v-if="getSlicedArray.length == 0" class="mx-auto"><span class="text-white text-xl m-10 block">No character
+        found</span></div>
     <div v-for="character in getSlicedArray" :key="character.id" class="p-5 w-[100%] sm:w-[25%]">
-    
+
       <CharacterCard :name="character.name" :house="character.house" :gender="character.gender"
-        :wizard="character.wizard" :birth="character.dateOfBirth" :species="character.species" :imgUrl="character.image"></CharacterCard>
+        :wizard="character.wizard" :birth="character.dateOfBirth" :species="character.species"
+        :imgUrl="character.image"></CharacterCard>
     </div>
 
   </div>
-  <PaginationNav v-if="getPagination" @get-page-number="getCurrentPage" :nbDePages="getNumOfPages"
-    :activePage="pageNumber"></PaginationNav>
+  <PaginationNav v-if="getPagination" @get-page-number="getCurrentPage" :nbDePages="getNumOfPages"></PaginationNav>
 
 
 </template>
@@ -37,8 +38,6 @@ export default {
 
       /*Nombre de personnages par page */
       numOfItems: 8,
-      /*Numéro de page par défaut*/
-      pageNumber: 1,
       /* Index du début de la division slice */
       sliceFirstIndex: 0,
       /* Index de la fin de la division slice - doit être similaire au nombre de personnages par page */
@@ -50,13 +49,11 @@ export default {
   methods: {
 
     getCurrentPage: function (page) {
-      this.pageNumber = page
-      this.sliceLastIndex = this.numOfItems * this.pageNumber
+      this.sliceLastIndex = this.numOfItems * page
       this.sliceFirstIndex = this.sliceLastIndex - this.numOfItems
-
-
     }
   },
+
   computed: {
     getFilteredCharacters: function () {
       return this.charactersList.filter(
@@ -69,16 +66,13 @@ export default {
 
     getNumOfPages: function () {
       return Math.round(this.getFilteredCharacters.length / this.numOfItems)
-
     },
-
 
     getPagination: function () {
       if (this.getFilteredCharacters.length <= this.numOfItems) {
         return false
       }
       else {
-
         return true
       }
     },
@@ -97,7 +91,6 @@ export default {
   watch: {
     'typedName'() {
       this.getCurrentPage(1)
-
     },
     'pickedGender'() {
       this.getCurrentPage(1)

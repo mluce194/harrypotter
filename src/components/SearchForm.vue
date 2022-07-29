@@ -37,17 +37,13 @@ export default {
 
   methods: {
     handleCharacterChange(event) {
-      this.$emit("readCharacterName", event.target.value);
       this.$store.commit('changeCharacter', event.target.value)
-      console.log("voici la valeur de changeCharacter", this.$store.state.character)
     },
     handleGenderChange(event) {
-      this.$emit("readCharacterGender", event.target.value);
       this.$store.commit('changeGender', event.target.value)
 
     },
     handleHouseChange(event) {
-      this.$emit("readCharacterHouse", event.target.value);
       this.$store.commit('changeHouse', event.target.value)
     },
   },
