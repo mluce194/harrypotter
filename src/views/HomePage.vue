@@ -6,7 +6,6 @@
 
 <script>
 
-import CharactersData from "/data/characters.json"
 import MainContainer from "@/components/MainContainer.vue"
 
 export default {
@@ -14,12 +13,7 @@ export default {
     components: {
         MainContainer
     },
-    data: function() {
-        return {
-                  charactersInfos: CharactersData,
 
-        }
-    }
 
 }
 </script>

@@ -1,16 +1,18 @@
 import { createApp } from 'vue'
 import { createStore } from 'vuex'
 import router from './router'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
 
 import App from './App.vue'
 
 import './index.css'
-import CharactersData from "/data/characters.json"
 
 
 const store = createStore({
     state: {
-        data: CharactersData,
+        dataFromApi: [],
         character: '',
         gender: 'all',
         house: 'all'
@@ -24,12 +26,28 @@ const store = createStore({
         },
         changeHouse(state, input) {
             state.house = input
+        },
+        setData(state, data) {
+            state.dataFromApi = data
         }
-    }
+    },
+    actions: {
+        async fetchAllData(context) {
+            const {data} = await axios.get("http://hp-api.herokuapp.com/api/characters")
+            context.commit("setData", data)
+
+        }
+    },
+    getters: {
+        charactersData(state) {
+            return state.dataFromApi
+        }
+    },
+
 
 
 })
 
 
 
-createApp(App).use(router).use(store).mount('#app')
+createApp(App).use(router).use(store).use(VueAxios, axios).mount('#app')

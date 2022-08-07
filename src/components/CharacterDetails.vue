@@ -57,7 +57,7 @@ export default {
 
   computed: {
     getCharactersData() {
-      return this.$store.state.data
+      return this.$store.getters.charactersData
     },
     getCharacterName() {
       return this.$route.params.name.split("-").join(" ")

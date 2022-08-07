@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="text-4xl font-bold p-10 text-amber-600 text-center">Search a Harry Potter character</h1>
-    <SearchForm></SearchForm>
+  <SearchForm></SearchForm>
     <ListOfCharacters :charactersList="getCharactersData" :typedName="getInputName" :pickedGender="getInputGender"
       :pickedHouse="getInputHouse"></ListOfCharacters>
 
@@ -43,7 +43,7 @@ export default {
   },
   computed: {
     getCharactersData() {
-      return this.$store.state.data
+      return this.$store.getters.charactersData
     },
     getInputName() {
       return this.$store.state.character
@@ -56,6 +56,8 @@ export default {
     }
 
   },
+
+
 
 
 
