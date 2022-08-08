@@ -20,7 +20,10 @@ const routes = [
             title: "Home - Awesome Harry Potter character search"
         }
     },
-    { path: '/:catchAll(.*)', redirect: '/404' },
+    { path: '/:catchAll(.*)', redirect: '/404',
+meta: {
+    title: "404 page"
+}},
     {
         path: '/character/:character',
         name: 'Character',
