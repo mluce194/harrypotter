@@ -2,7 +2,8 @@
   <form class="p-5 md:w-[40rem] mx-auto">
     <div class="m-2 sm:flex">
       <label for="character" class="text-white w-[100%] sm:w-[50%] text-xl my-2 block">Search by character name</label>
-      <input type="text" id="character" placeholder="Type character name" :value="getInputName" @input="handleCharacterChange" class="w-[100%] sm:w-[50%]"/>
+      <input type="text" id="character" placeholder="Type character name" :value="getInputName"
+        @input="handleCharacterChange" class="w-[100%] sm:w-[50%]" />
     </div>
     <div class="m-2 sm:flex">
       <label for="gender" class="text-white w-[100%] sm:w-[50%] text-xl my-2 block">Sort by gender</label>
@@ -38,18 +39,25 @@ export default {
   methods: {
     handleCharacterChange(event) {
       this.$store.commit('changeCharacter', event.target.value)
+      this.$store.commit("setPageNumber", 1)
+
     },
     handleGenderChange(event) {
       this.$store.commit('changeGender', event.target.value)
+      this.$store.commit("setPageNumber", 1)
+
 
     },
     handleHouseChange(event) {
       this.$store.commit('changeHouse', event.target.value)
+      this.$store.commit("setPageNumber", 1)
+
     },
   },
   computed: {
     getInputName() {
       return this.$store.state.character
+
     },
     getInputGender() {
       return this.$store.state.gender

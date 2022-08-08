@@ -1,9 +1,9 @@
 <template>
 
-  <div class="text-white px-5 pb-20 sm:max-w-[40rem] mx-auto text-xl">
+  <div class="text-white px-5 pb-20 sm:max-w-[50rem] mx-auto text-xl">
     <h1 class="text-4xl font-bold px-5 pb-20 text-amber-600 text-center uppercase">{{ getSingleCharacterData.name }}
     </h1>
-    <img class="block mx-auto max-w-[100%] sm:float-right" :src="getSingleCharacterData.imgUrl"
+    <img v-if="getSingleCharacterData.image" class="block mx-auto max-w-[100%] sm:float-right sm:max-w-[40%] md:max-w-[50%] sm:ml-2 rounded-lg" :src="getSingleCharacterData.image"
       :alt="getSingleCharacterData.name" />
     <p class="py-2"><strong>{{ getSingleCharacterData.wizard ? getSingleCharacterData.gender == "female" ? "Witch" :
         "Wizard" : getSingleCharacterData.species

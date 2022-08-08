@@ -1,7 +1,7 @@
 <template>
   <div class="border rounded p-5 text-white">
 
-    <img class="rounded-full float-right max-w-[25%]" :src="imgUrl" />
+    <img v-if="imgUrl" class="rounded-lg float-right max-w-[25%]" :src="imgUrl" />
     <h2 class="font-bold uppercase text-amber-600">{{ name }}</h2>
     <p class="uppercase">{{ wizard ? gender == "female" ? "Witch" : "Wizard" : species }}</p>
     <p><strong>Date of birth: </strong>{{ birth ? birth : "unknown" }}</p>

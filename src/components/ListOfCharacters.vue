@@ -10,7 +10,7 @@
     </div>
 
   </div>
-  <PaginationNav v-if="getPagination" @get-page-number="getCurrentPage" :nbDePages="getNumOfPages"></PaginationNav>
+  <PaginationNav v-if="getPagination" :nbDePages="getNumOfPages"></PaginationNav>
 
 
 </template>
@@ -38,23 +38,16 @@ export default {
 
       /*Nombre de personnages par page */
       numOfItems: 8,
-      /* Index du début de la division slice */
+      /* Index du début de la division slice par défaut */
       sliceFirstIndex: 0,
-      /* Index de la fin de la division slice - doit être similaire au nombre de personnages par page */
+      /* Index de la fin de la division slice par défaut - doit être similaire au nombre de personnages par page */
       sliceLastIndex: 8
     }
   },
 
 
-  methods: {
-
-    getCurrentPage: function (page) {
-      this.sliceLastIndex = this.numOfItems * page
-      this.sliceFirstIndex = this.sliceLastIndex - this.numOfItems
-    }
-  },
-
   computed: {
+
     getFilteredCharacters: function () {
       return this.charactersList.filter(
         character =>
@@ -79,7 +72,7 @@ export default {
 
     getSlicedArray: function () {
       if (this.getPagination) {
-        return this.getFilteredCharacters.slice(this.sliceFirstIndex, this.sliceLastIndex)
+        return this.getFilteredCharacters.slice(this.numOfItems * this.$store.state.pageNumber - this.numOfItems, this.numOfItems * this.$store.state.pageNumber)
       }
       else {
         return this.getFilteredCharacters
@@ -88,17 +81,7 @@ export default {
 
   },
 
-  watch: {
-    'typedName'() {
-      this.getCurrentPage(1)
-    },
-    'pickedGender'() {
-      this.getCurrentPage(1)
-    },
-    'pickedHouse'() {
-      this.getCurrentPage(1)
-    }
-  }
+
 
 };
 </script>

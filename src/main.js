@@ -13,6 +13,7 @@ import './index.css'
 const store = createStore({
     state: {
         dataFromApi: [],
+        pageNumber: 1,
         character: '',
         gender: 'all',
         house: 'all'
@@ -29,6 +30,9 @@ const store = createStore({
         },
         setData(state, data) {
             state.dataFromApi = data
+        },
+        setPageNumber(state, number) {
+            state.pageNumber = number
         }
     },
     actions: {
@@ -41,7 +45,8 @@ const store = createStore({
     getters: {
         charactersData(state) {
             return state.dataFromApi
-        }
+        },
+
     },
 
 
