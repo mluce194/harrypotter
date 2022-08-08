@@ -36,7 +36,7 @@ const store = createStore({
   actions: {
     async fetchAllData({ commit }) {
       try {
-        const data = await axios.get('http://hp-api.herokuapp.com/api/characters')
+        const data = await axios.get('https://hp-api.herokuapp.com/api/characters')
           commit('setData', data.data)
         }
         catch (error) {
