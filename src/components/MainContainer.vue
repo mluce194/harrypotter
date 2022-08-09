@@ -1,9 +1,11 @@
 <template>
   <div>
     <h1 class="text-4xl font-bold p-10 text-amber-600 text-center">Search a Harry Potter character</h1>
-  <SearchForm></SearchForm>
-    <ListOfCharacters :charactersList="getCharactersData" :typedName="getInputName" :pickedGender="getInputGender"
-      :pickedHouse="getInputHouse"></ListOfCharacters>
+    <SearchForm></SearchForm>
+
+      <ListOfCharacters :charactersList="getCharactersData" :typedName="getInputName" :pickedGender="getInputGender"
+        :pickedHouse="getInputHouse"></ListOfCharacters>
+
 
 
 

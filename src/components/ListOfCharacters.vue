@@ -1,6 +1,6 @@
 <template>
   <div class="sm:flex flex-wrap">
-    <div v-if="getSlicedArray.length == 0" class="mx-auto"><span class="text-white text-xl m-10 block">No character
+    <div v-if="getSlicedArray.length == 0 && searchInput" class="mx-auto"><span class="text-white text-xl m-10 block">No character
         found</span></div>
     <div v-for="character in getSlicedArray" :key="character.id" class="p-5 w-[100%] sm:w-[50%] lg:w-[25%]">
 
@@ -41,7 +41,8 @@ export default {
       /* Index du début de la division slice par défaut */
       sliceFirstIndex: 0,
       /* Index de la fin de la division slice par défaut - doit être similaire au nombre de personnages par page */
-      sliceLastIndex: 8
+      sliceLastIndex: 8,
+      searchInput: false
     }
   },
 
@@ -80,6 +81,18 @@ export default {
     },
 
   },
+
+  watch: {
+    'typedName'() {
+      this.searchInput = true
+    },
+    'pickedGender'() {
+      this.searchInput = true
+    },
+    'pickedHouse'() {
+      this.searchInput = true
+    },
+  }
 
 
 

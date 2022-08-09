@@ -38,6 +38,7 @@ const store = createStore({
       try {
         const data = await axios.get('https://hp-api.herokuapp.com/api/characters')
           commit('setData', data.data)
+          this.loading = false
         }
         catch (error) {
             alert(error)
