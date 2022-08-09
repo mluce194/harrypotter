@@ -14,7 +14,7 @@
       </select>
     </div>
     <div class="m-2 sm:flex">
-      <label for="house" class="text-white w-[100%] sm:w-[50%] text-xl my-2 block">Sort by house</label>
+      <label for="house" class="text-white w-[100%] sm:w-[50%] text-xl my-2 block">Sort by Hogwarts house</label>
       <select id="house" @change="handleHouseChange" class="w-[100%] sm:w-[50%]" :value="getInputHouse">
         <option value="all">All houses</option>
         <option value="Gryffindor">Gryffindor</option>
