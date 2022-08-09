@@ -1,4 +1,9 @@
-# hello-world
+# Harry Potter character search form
+**How it works** : the application is connected to a Harry Potter character database. You can enter a Harry Potter character name in the search form and the application shows you the matching character cards. You can also sort the characters by gender and/or Hogwarts house
+
+**How it was made**: the application uses VueJS version 3 and is connected to a Heroku API.
+
+**What it looks like** : A **demo** is visible here: https://resonant-taffy-1b332e.netlify.app/
 
 ## Project setup
 ```
