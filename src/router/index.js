@@ -8,17 +8,13 @@ const routes = [
         path: '/',
         name: 'Home',
         component: HomePage,
-        meta: {
-            title: "Home - Awesome Harry Potter character search"
-        }
+
     },
     {
         path: '/404',
         name: '404',
         component: NotFound,
-        meta: {
-            title: "Home - Awesome Harry Potter character search"
-        }
+
     },
     { path: '/:catchAll(.*)', redirect: '/404',
 meta: {
@@ -28,15 +24,7 @@ meta: {
         path: '/character/:character',
         name: 'Character',
         component: CharacterPage,
-        meta: {
-            title: "Character page - Awesome Harry Potter character search",
-            metaTags: [
-                {
-                    name: 'description',
-                    content: 'You can search a Harry Potter character'
-                }
-            ]
-        }
+
     }
 ]
 
